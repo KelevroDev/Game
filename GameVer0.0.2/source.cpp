@@ -6,36 +6,79 @@ using namespace std;
 //Class User
 class User
 {
-	int mana;
-	int strong;
-	int intelligence;
-	int agility;
-	int damage;
-	int armor;
-	int weapon;
-
-
+	int mana = 100;
+	int strong = 5 + level;
+	int intelligence = 5 + level;
+	int agility = 5 + level;
 
 public:
-	char * name = "user";//get from file
-	int level;//get from file, change with time or killing bots and users
-	int health;
+	char * name = "bot";//get from file
+	int level = 5;//get from file, change with time or killing bots and users
+	int health = 35 + (level * 2);
+	int damage = 10 + weapon;
+	int armor = 2;
+	int weapon = 5;
 
 
 
 };
 
 
+//Class Bot
+class Bot
+{
+	int mana = 100;
+	int strong = 5 + level;
+	int intelligence = 5 + level;
+	int agility = 5 + level;
 
+public:
+	char * name = "bot";//get from file
+	int level = 5;//get from file, change with time or killing bots and users
+	int health = 35 + (level * 2);
+	int damage = 10 + weapon;
+	int armor = 2;
+	int weapon = 5;
+
+
+};
+
+
+//function fight
+void fight(User u, Bot b)
+{
+	
+	do
+	{
+		u.health = u.health - b.damage;
+		b.health = b.health - u.damage;
+	}
+	while (u.health > 0 || b.health > 0);
+	cout << "fight end";
+	if (u.health > 0)
+	{
+		cout << "Winner is - " << u.name;
+	}
+	if (b.health > 0)
+	{
+		cout << "Winner is - " << b.name;
+	}
+
+}
 
 
 int main()
 {
 	User u;
-
+	Bot b;
 	cout << "Name: " << u.name << endl;
 	cout << "Lvl: " << u.level << endl;
 	cout << "helth: " << u.health << endl;
+	cout << "Name: " << b.name << endl;
+	cout << "Lvl: " << b.level << endl;
+	cout << "helth: " << b.health << endl;
+	fight(u, b);
+
 	return 0;
 }
 

@@ -10,19 +10,25 @@ class User
 	int strong = 5 + level;
 	int intelligence = 5 + level;
 	int agility = 5 + level;
+	
 
 public:
 	char * name = "bot";//get from file
 	int level = 5;//get from file, change with time or killing bots and users
-	int health = 35 + (level * 2);
-	int damage = 10 + weapon;
+	int health = 35 + (level * 2) + Armor.head + Armor.boots + Armor.glows + Armor.body;
+	int damage = 10 + weapon + ;
 	int armor = 2;
 	int weapon = 5;
 
-
-
+	friend Armor;
 };
 
+//Class armor, get from file, drop from bots, or enemy castles, or can be create in your castle
+Class Head
+{
+	
+	friend User;
+}	
 
 //Class Bot
 class Bot
@@ -39,31 +45,38 @@ public:
 	int damage = 10 + weapon;
 	int armor = 2;
 	int weapon = 5;
-
-
 };
 
 
-//function fight
-void fight(User u, Bot b)
+
+//class Castle
+class Castle
+{
+	int CastleLevel = 2;
+	int unitNumber = 5 + CastleLevel;
+	int 
+};
+
+
+//function fight for tests
+void fight(User & u, Bot & b)
 {
 	
 	do
 	{
-		u.health = u.health - b.damage;
-		b.health = b.health - u.damage;
+		u.health = u.health - b.damage;//need to do this batter
+		b.health = b.health - u.damage;//need to do this batter
 	}
 	while (u.health > 0 || b.health > 0);
 	cout << "fight end";
-	if (u.health > 0)
+	if (u.health <= 0)
 	{
 		cout << "Winner is - " << u.name;
 	}
-	if (b.health > 0)
+	if (b.health <= 0)
 	{
 		cout << "Winner is - " << b.name;
 	}
-
 }
 
 
